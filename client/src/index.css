@@ -1,0 +1,87 @@
+/* index.css */
+@import "tailwindcss";
+
+@theme {
+  /* Cyberpunk Neon palette */
+  --color-obsidian: #0B0C10;
+  --color-obsidian-light: #111319;
+  --color-cyberslate: #1F2833;
+  --color-cyberslate-light: #2A3541;
+  --color-neon-aqua: #45A29E;
+  --color-neon-aqua-bright: #5CE1D8;
+  --color-neon-fuchsia: #F64C72;
+  --color-neon-fuchsia-bright: #FF6B8E;
+
+  --font-display: "Space Grotesk", sans-serif;
+  --font-sans: "Inter", sans-serif;
+
+  --shadow-glow-aqua: 0 0 12px rgba(69, 162, 158, 0.55), 0 0 2px rgba(69, 162, 158, 0.8);
+  --shadow-glow-aqua-lg: 0 0 24px rgba(69, 162, 158, 0.5), 0 0 6px rgba(69, 162, 158, 0.7);
+  --shadow-glow-fuchsia: 0 0 12px rgba(246, 76, 114, 0.55), 0 0 2px rgba(246, 76, 114, 0.8);
+  --shadow-glow-fuchsia-lg: 0 0 24px rgba(246, 76, 114, 0.5), 0 0 6px rgba(246, 76, 114, 0.7);
+
+  --ease-premium: cubic-bezier(0.22, 1, 0.36, 1);
+
+  --animate-fade-in-up: fadeInUp 0.35s ease-out both;
+  --animate-fade-in: fadeIn 0.25s ease-out both;
+  --animate-pulse-glow: pulseGlow 2.4s ease-in-out infinite;
+  --animate-shimmer: shimmer 2.5s linear infinite;
+}
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(8px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 6px rgba(69, 162, 158, 0.5); }
+  50% { box-shadow: 0 0 18px rgba(69, 162, 158, 0.9); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@layer base {
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-neon-aqua) var(--color-obsidian);
+  }
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  *::-webkit-scrollbar-track {
+    background: var(--color-obsidian);
+  }
+  *::-webkit-scrollbar-thumb {
+    background: var(--color-neon-aqua);
+    border-radius: 9999px;
+  }
+  *::-webkit-scrollbar-thumb:hover {
+    background: var(--color-neon-aqua-bright);
+  }
+
+  ::selection {
+    background: var(--color-neon-fuchsia);
+    color: white;
+  }
+
+  body {
+    background-color: var(--color-obsidian);
+    color: #E5E7EB;
+    font-family: var(--font-sans);
+  }
+}
+
+@layer utilities {
+  .glass-panel {
+    background: rgba(31, 40, 51, 0.6);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(69, 162, 158, 0.15);
+  }
+}
