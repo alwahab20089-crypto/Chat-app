@@ -78,3 +78,5 @@ jobs:
         run: |
           docker push ghcr.io/alwahab20089-crypto/aura-frontend:latest
           docker push ghcr.io/alwahab20089-crypto/aura-frontend:${{ github.sha }}
+      - name: Trigger Render deployment
+        run: curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK }}"
