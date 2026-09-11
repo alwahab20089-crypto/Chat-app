@@ -1,0 +1,29 @@
+services:
+  backend:
+    build:
+      context: ../..
+      dockerfile: devops/docker/backend/Dockerfile
+    image: aura-backend:dev
+    env_file:
+      - ../../server/.env
+    ports:
+      - "5000:5000"
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:5000/api/health"]
+      interval: 30s
+      timeout: 5s
+      start_period: 10s
+      retries: 3
+
+  frontend:
+    build:
+      context: ../..
+      dockerfile: devops/docker/frontend/Dockerfile
+      args:
+        VITE_API_URL: http://localhost:5000/api
+    image: aura-frontend:dev
+    ports:
+      - "8080:80"
+    depends_on:
+      backend:
+        condition: service_healthy
